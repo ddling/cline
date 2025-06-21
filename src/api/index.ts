@@ -27,6 +27,7 @@ import { SambanovaHandler } from "./providers/sambanova"
 import { CerebrasHandler } from "./providers/cerebras"
 import { SapAiCoreHandler } from "./providers/sapaicore"
 import { ClaudeCodeHandler } from "./providers/claude-code"
+import { HuaweiCloudMaasHandler } from "./providers/huaweicloud-maas"
 
 export interface ApiHandler {
 	createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream
@@ -93,6 +94,8 @@ export function buildApiHandler(configuration: ApiConfiguration): ApiHandler {
 			return new SapAiCoreHandler(options)
 		case "claude-code":
 			return new ClaudeCodeHandler(options)
+		case "huaweicloud-maas":
+			return new HuaweiCloudMaasHandler(options)
 		default:
 			return new AnthropicHandler(options)
 	}

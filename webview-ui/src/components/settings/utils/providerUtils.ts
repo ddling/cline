@@ -42,6 +42,8 @@ import {
 	sapAiCoreDefaultModelId,
 	claudeCodeDefaultModelId,
 	claudeCodeModels,
+	huaweiCloudMaasModels,
+	huaweiCloudMaasDefaultModelId,
 } from "@shared/api"
 
 /**
@@ -181,6 +183,8 @@ export function normalizeApiConfiguration(apiConfiguration?: ApiConfiguration): 
 			return getProviderData(cerebrasModels, cerebrasDefaultModelId)
 		case "sapaicore":
 			return getProviderData(sapAiCoreModels, sapAiCoreDefaultModelId)
+		case "huaweicloud-maas":
+			return getProviderData(huaweiCloudMaasModels, huaweiCloudMaasDefaultModelId)
 		default:
 			return getProviderData(anthropicModels, anthropicDefaultModelId)
 	}

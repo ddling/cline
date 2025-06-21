@@ -247,6 +247,7 @@ export async function getAllExtensionState(context: vscode.ExtensionContext) {
 		sapAiResourceGroup,
 		sapAiCoreModelId,
 		claudeCodePath,
+		huaweiCloudApiKey,
 	] = await Promise.all([
 		getGlobalState(context, "isNewUser") as Promise<boolean | undefined>,
 		getSecret(context, "apiKey") as Promise<string | undefined>,
@@ -320,6 +321,7 @@ export async function getAllExtensionState(context: vscode.ExtensionContext) {
 		getGlobalState(context, "sapAiResourceGroup") as Promise<string | undefined>,
 		getGlobalState(context, "sapAiCoreModelId") as Promise<string | undefined>,
 		getGlobalState(context, "claudeCodePath") as Promise<string | undefined>,
+		getSecret(context, "huaweiCloudApiKey") as Promise<string | undefined>,
 	])
 
 	const localClineRulesToggles = (await getWorkspaceState(context, "localClineRulesToggles")) as ClineRulesToggles
@@ -507,6 +509,7 @@ export async function getAllExtensionState(context: vscode.ExtensionContext) {
 			sapAiCoreTokenUrl,
 			sapAiResourceGroup,
 			sapAiCoreModelId,
+			huaweiCloudApiKey,
 		},
 		isNewUser: isNewUser ?? true,
 		lastShownAnnouncementId,
@@ -622,6 +625,7 @@ export async function updateApiConfiguration(context: vscode.ExtensionContext, a
 		sapAiResourceGroup,
 		sapAiCoreModelId,
 		claudeCodePath,
+		huaweiCloudApiKey,
 	} = apiConfiguration
 	// Workspace state updates
 	await updateWorkspaceState(context, "apiProvider", apiProvider)
@@ -703,6 +707,7 @@ export async function updateApiConfiguration(context: vscode.ExtensionContext, a
 	await storeSecret(context, "nebiusApiKey", nebiusApiKey)
 	await storeSecret(context, "sapAiCoreClientId", sapAiCoreClientId)
 	await storeSecret(context, "sapAiCoreClientSecret", sapAiCoreClientSecret)
+	await storeSecret(context, "huaweiCloudApiKey", huaweiCloudApiKey)
 }
 
 export async function resetWorkspaceState(context: vscode.ExtensionContext) {
@@ -739,6 +744,7 @@ export async function resetGlobalState(context: vscode.ExtensionContext) {
 		"sambanovaApiKey",
 		"cerebrasApiKey",
 		"nebiusApiKey",
+		"huaweiCloudApiKey",
 	]
 	for (const key of secretKeys) {
 		await storeSecret(context, key, undefined)

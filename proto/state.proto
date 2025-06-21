@@ -220,4 +220,7 @@ message ApiConfiguration {
 
   // Claude Code specific
   optional string claude_code_path = 77;
+
+  // Huawei Cloud MaaS specific
+  optional string huawei_cloud_api_key = 78;
 }

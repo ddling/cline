@@ -27,6 +27,7 @@ export type ApiProvider =
 	| "sambanova"
 	| "cerebras"
 	| "sapaicore"
+	| "huaweicloud-maas"
 
 export interface ApiHandlerOptions {
 	apiModelId?: string
@@ -94,6 +95,7 @@ export interface ApiHandlerOptions {
 	reasoningEffort?: string
 	sambanovaApiKey?: string
 	cerebrasApiKey?: string
+	huaweiCloudApiKey?: string
 	requestTimeoutMs?: number
 	sapAiCoreClientId?: string
 	sapAiCoreClientSecret?: string
@@ -2469,5 +2471,51 @@ export const sapAiCoreModels = {
 		inputPrice: 1.1,
 		outputPrice: 4.4,
 		cacheReadsPrice: 0.275,
+	},
+} as const satisfies Record<string, ModelInfo>
+
+// HuaweiCloudMaaS Models
+export type HuaweiCloudMaasModelId = keyof typeof huaweiCloudMaasModels
+export const huaweiCloudMaasDefaultModelId: HuaweiCloudMaasModelId = "DeepSeek-R1"
+export const huaweiCloudMaasModels = {
+	"deepseek-r1-250528": {
+		maxTokens: 32_768,
+		contextWindow: 64_000,
+		supportsImages: false,
+		supportsPromptCache: false,
+		inputPrice: 0,
+		outputPrice: 0,
+	},
+	"DeepSeek-R1": {
+		maxTokens: 32_768,
+		contextWindow: 64_000,
+		supportsImages: false,
+		supportsPromptCache: false,
+		inputPrice: 0,
+		outputPrice: 0,
+	},
+	"DeepSeek-V3": {
+		maxTokens: 32_768,
+		contextWindow: 64_000,
+		supportsImages: false,
+		supportsPromptCache: false,
+		inputPrice: 0,
+		outputPrice: 0,
+	},
+	"qwen3-235b-a22b": {
+		maxTokens: 8_000,
+		contextWindow: 32_000,
+		supportsImages: false,
+		supportsPromptCache: false,
+		inputPrice: 0,
+		outputPrice: 0,
+	},
+	"qwen3-32b": {
+		maxTokens: 8_000,
+		contextWindow: 32_000,
+		supportsImages: false,
+		supportsPromptCache: false,
+		inputPrice: 0,
+		outputPrice: 0,
 	},
 } as const satisfies Record<string, ModelInfo>

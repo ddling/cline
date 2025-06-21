@@ -22,6 +22,7 @@ import {
 	vertexModels,
 	xaiModels,
 	sapAiCoreModels,
+	huaweiCloudMaasModels,
 } from "@shared/api"
 import { EmptyRequest, StringRequest } from "@shared/proto/common"
 import { OpenAiModelsRequest, UpdateApiConfigurationRequest } from "@shared/proto/models"
@@ -291,6 +292,7 @@ const ApiOptions = ({
 					<VSCodeOption value="sambanova">SambaNova</VSCodeOption>
 					<VSCodeOption value="cerebras">Cerebras</VSCodeOption>
 					<VSCodeOption value="sapaicore">SAP AI Core</VSCodeOption>
+					<VSCodeOption value="huaweicloud-maas">Huawei Cloud MaaS</VSCodeOption>
 				</VSCodeDropdown>
 			</DropdownContainer>
 
@@ -1642,6 +1644,37 @@ const ApiOptions = ({
 				</div>
 			)}
 
+			{selectedProvider === "huaweicloud-maas" && (
+				<div>
+					<VSCodeTextField
+						value={apiConfiguration?.huaweiCloudApiKey || ""}
+						style={{ width: "100%" }}
+						type="password"
+						onInput={handleInputChange("huaweiCloudApiKey")}
+						placeholder="Enter API Key...">
+						<span style={{ fontWeight: 500 }}>Huawei Cloud MaaS API Key</span>
+					</VSCodeTextField>
+					<p
+						style={{
+							fontSize: "12px",
+							marginTop: 3,
+							color: "var(--vscode-descriptionForeground)",
+						}}>
+						This key is stored locally and only used to make API requests from this extension.
+						{!apiConfiguration?.huaweiCloudApiKey && (
+							<VSCodeLink
+								href="https://console.huaweicloud.com/modelarts/?locale=zh-cn&region=cn-southwest-2#/model-studio/authmanage"
+								style={{
+									display: "inline",
+									fontSize: "inherit",
+								}}>
+								You can get a Huawei Cloud MaaS API key by signing up here.
+							</VSCodeLink>
+						)}
+					</p>
+				</div>
+			)}
+
 			{apiErrorMessage && (
 				<p
 					style={{
@@ -1763,6 +1796,7 @@ const ApiOptions = ({
 							{selectedProvider === "cerebras" && createDropdown(cerebrasModels)}
 							{selectedProvider === "nebius" && createDropdown(nebiusModels)}
 							{selectedProvider === "sapaicore" && createDropdown(sapAiCoreModels)}
+							{selectedProvider === "huaweicloud-maas" && createDropdown(huaweiCloudMaasModels)}
 						</DropdownContainer>
 
 						{SUPPORTED_THINKING_MODELS[selectedProvider]?.includes(selectedModelId) && (

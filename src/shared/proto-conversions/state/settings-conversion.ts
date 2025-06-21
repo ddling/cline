@@ -120,6 +120,9 @@ export function convertApiConfigurationToProtoApiConfiguration(config: ApiConfig
 		// Claude Code specific
 		claudeCodePath: config.claudeCodePath,
 
+		// Huawei Cloud MaaS specific
+		huaweiCloudApiKey: config.huaweiCloudApiKey,
+
 		// Arrays
 		favoritedModelIds: config.favoritedModelIds || [],
 	})
@@ -227,6 +230,9 @@ export function convertProtoApiConfigurationToApiConfiguration(protoConfig: Prot
 
 		// Claude Code specific
 		claudeCodePath: protoConfig.claudeCodePath,
+
+		// Huawei Cloud MaaS specific
+		huaweiCloudApiKey: protoConfig.huaweiCloudApiKey,
 
 		// Arrays
 		favoritedModelIds: protoConfig.favoritedModelIds || [],
